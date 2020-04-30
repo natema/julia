@@ -437,7 +437,7 @@ end
             # Exemplary Interface-local ipv6 multicast group, if we wanted this to actually be routed
             # to other computers, we should use a link-local or larger address scope group
             # bsd family do not allow broadcasting on loopbacks
-            @static if !Sys.isbsd() || !Sys.isapple()
+            @static if !Sys.isbsd() || Sys.isapple()
                 group = ip"ff11::6a75:6c69:61"
                 join_multicast_group(a, group)
                 join_multicast_group(b, group)
