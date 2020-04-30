@@ -186,7 +186,7 @@ JL_DLLEXPORT void *jl_load_dynamic_library(const char *modname, unsigned flags, 
                     continue;
 
                 // Is this entry supposed to be relative to the bindir?
-                if (strncmp(dl_path, "@executable_path", 16 < len ? 16 : len) == 0) {
+                if (len >= 16 && strncmp(dl_path, "@executable_path", 16) == 0) {
                     snprintf(relocated, PATHBUF, "%s%s", jl_options.julia_bindir, dl_path + 16);
                     len = len - 16 + strlen(jl_options.julia_bindir);
                 } else {
