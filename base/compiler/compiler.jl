@@ -113,5 +113,9 @@ include("compiler/optimize.jl") # TODO: break this up further + extract utilitie
 include("compiler/bootstrap.jl")
 ccall(:jl_set_typeinf_func, Cvoid, (Any,), typeinf_ext)
 
+include("compiler/parsing.jl")
+# FIXME
+#set_parser(fl_parse)
+
 end # baremodule Compiler
 ))

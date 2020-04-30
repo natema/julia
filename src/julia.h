@@ -632,6 +632,7 @@ extern JL_DLLEXPORT jl_datatype_t *jl_void_type JL_GLOBALLY_ROOTED;  // deprecat
 extern JL_DLLEXPORT jl_datatype_t *jl_nothing_type JL_GLOBALLY_ROOTED;
 extern JL_DLLEXPORT jl_datatype_t *jl_signed_type JL_GLOBALLY_ROOTED;
 extern JL_DLLEXPORT jl_datatype_t *jl_voidpointer_type JL_GLOBALLY_ROOTED;
+extern JL_DLLEXPORT jl_datatype_t *jl_uint8pointer_type JL_GLOBALLY_ROOTED;
 extern JL_DLLEXPORT jl_unionall_t *jl_pointer_type JL_GLOBALLY_ROOTED;
 extern JL_DLLEXPORT jl_unionall_t *jl_addrspace_pointer_type JL_GLOBALLY_ROOTED;
 extern JL_DLLEXPORT jl_unionall_t *jl_ref_type JL_GLOBALLY_ROOTED;
@@ -1287,6 +1288,7 @@ JL_DLLEXPORT jl_value_t *jl_box_uint64(uint64_t x);
 JL_DLLEXPORT jl_value_t *jl_box_float32(float x);
 JL_DLLEXPORT jl_value_t *jl_box_float64(double x);
 JL_DLLEXPORT jl_value_t *jl_box_voidpointer(void *x);
+JL_DLLEXPORT jl_value_t *jl_box_uint8pointer(uint8_t *x);
 JL_DLLEXPORT jl_value_t *jl_box_ssavalue(size_t x);
 JL_DLLEXPORT jl_value_t *jl_box_slotnumber(size_t x);
 JL_DLLEXPORT int8_t jl_unbox_bool(jl_value_t *v) JL_NOTSAFEPOINT;
@@ -1301,6 +1303,7 @@ JL_DLLEXPORT uint64_t jl_unbox_uint64(jl_value_t *v) JL_NOTSAFEPOINT;
 JL_DLLEXPORT float jl_unbox_float32(jl_value_t *v) JL_NOTSAFEPOINT;
 JL_DLLEXPORT double jl_unbox_float64(jl_value_t *v) JL_NOTSAFEPOINT;
 JL_DLLEXPORT void *jl_unbox_voidpointer(jl_value_t *v) JL_NOTSAFEPOINT;
+JL_DLLEXPORT uint8_t *jl_unbox_uint8pointer(jl_value_t *v) JL_NOTSAFEPOINT;
 
 JL_DLLEXPORT int jl_get_size(jl_value_t *val, size_t *pnt);
 
@@ -1604,7 +1607,7 @@ JL_DLLEXPORT jl_value_t *jl_restore_incremental_from_buf(const char *buf, size_t
 JL_DLLEXPORT jl_value_t *jl_parse_all(const char *str, size_t len,
                                       const char *filename, size_t filename_len);
 JL_DLLEXPORT jl_value_t *jl_parse_string(const char *str, size_t len,
-                                         int pos0, int greedy);
+                                         int offset, int greedy);
 // lowering
 JL_DLLEXPORT jl_value_t *jl_expand(jl_value_t *expr, jl_module_t *inmodule);
 JL_DLLEXPORT jl_value_t *jl_expand_with_loc(jl_value_t *expr, jl_module_t *inmodule,
